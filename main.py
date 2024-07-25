@@ -3,11 +3,11 @@ import pandas as pd
 
 app = Flask("__name__")
 
-
-
+station = pd.read_csv("data_small\stations.txt", skiprows= 17)
+station= station[["STAID","STANAME                                 "]]
 @app.route("/")
 def home():
-    return  render_template("home.html")
+    return  render_template("home.html", data= station.to_html())
 
 @app.route("/api/v1/<station>/<date>")
 # v1 means version 1
